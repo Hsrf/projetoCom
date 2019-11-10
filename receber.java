@@ -12,11 +12,11 @@ public class receber extends Thread{
 
 	public void run() {
 		String str;
+
 		while (true) {
 			try {
 				str = client.receivePack();
 				if(!str.equals("")) {
-					//str = str.substring(0, str.lastIndexOf(3));
 					client.graphicUI.textArea.append("OTHER: " + str + "\n");
 				}
 			} catch (IOException e) {

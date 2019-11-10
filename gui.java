@@ -29,7 +29,7 @@ public class gui {
                     if(!textField.getText().equals("")) {
                         textArea.append("YOU: " + textField.getText() + "\n");
                         try {
-                            client.sendPack(textField.getText(), client.otherPort);
+                            client.sendPack(textField.getText(), client.otherIP, client.otherPort);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
@@ -43,7 +43,7 @@ public class gui {
                 if(!textField.getText().equals("")) {
                     textArea.append("YOU: " + textField.getText() + "\n");
                     try {
-                        client.sendPack(textField.getText(), client.otherPort);
+                        client.sendPack(textField.getText(), client.otherIP, client.otherPort);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
