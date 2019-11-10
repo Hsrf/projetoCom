@@ -26,6 +26,21 @@ public class gui {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if(!textField.getText().equals("")) {
+                        textArea.append("YOU: " + textField.getText() + "\n");
+                        try {
+                            client.sendPack(textField.getText(), client.otherPort);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                        textField.setText("");
+                    }
+                }
+            }
+        });
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(!textField.getText().equals("")) {
                     textArea.append("YOU: " + textField.getText() + "\n");
                     try {
                         client.sendPack(textField.getText(), client.otherPort);
@@ -34,17 +49,6 @@ public class gui {
                     }
                     textField.setText("");
                 }
-            }
-        });
-        button1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                textArea.append("YOU: " + textField.getText() + "\n");
-                try {
-                    client.sendPack(textField.getText(), client.otherPort);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                textField.setText("");
             }
         });
     }

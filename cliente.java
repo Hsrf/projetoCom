@@ -7,8 +7,11 @@ import java.net.UnknownHostException;
 public class cliente {
 	
 	DatagramSocket port;
-	int otherPort;
+	int serverPort = 9999;
 	gui graphicUI;
+	//Informacoes do outro cliente
+	int otherPort;
+	InetAddress otherIP = InetAddress.getByName("localhost");
 
 	DatagramPacket sendPacket;
 	DatagramPacket receivePacket;
@@ -16,12 +19,12 @@ public class cliente {
 	public cliente() throws IOException {
 		port = new DatagramSocket();
 		otherPort = -1;
-		sendPack("", 8888);
+		sendPack("", serverPort);
 	}
 	
 	public void sendPack(String str, int porta) throws IOException {
 		byte[] sendData = (str).getBytes();
-		sendPacket = new DatagramPacket(sendData, sendData.length, InetAddress.getByName("localhost"), porta);
+		sendPacket = new DatagramPacket(sendData, sendData.length, otherIP, porta);
 		port.send(sendPacket);
 	}
 	
@@ -31,7 +34,7 @@ public class cliente {
 		port.receive(receivePacket);
 		String new_str = new String(receivePacket.getData());
 		
-		if(receivePacket.getPort() == 8888) {
+		if(receivePacket.getPort() == serverPort) {
 			new_str = new_str.substring(0, 5);
 			otherPort = Integer.parseInt(new_str);
 			graphicUI = new gui(this);
