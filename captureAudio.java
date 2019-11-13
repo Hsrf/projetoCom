@@ -1,32 +1,32 @@
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class captureAudio extends  Thread {
+public class captureAudio implements Runnable {
     Timer timer;
     byte audioData[];
+    private volatile boolean stop;
 
     public captureAudio(){
         timer = new Timer();
-        timer.schedule(new sendAudio(), 200);
+        stop = false;
+    }
+
+    public void run() {
+        timer.schedule(new sendAudio(), 20);
+        while(!stop){
+            //armazena as informacoes de audio em audioData
+        }
     }
 
     class sendAudio extends TimerTask{
-        public void run(){
-
-            System.out.println("funciona");
-            /*
-            //envia o audio
-            //zera o array do audio
-
-             */
-            timer.schedule(new sendAudio(), 200);
+        public void run() {
+            //envia audio pro outro cliente
+            //zera o array
+            if(!stop) timer.schedule(new sendAudio(), 20);
         }
     }
 
-    public static void main(String[] args) {
-        new captureAudio();
-        while(true){
-            //vai capturando o audio
-        }
+    public void setStop(boolean stop){
+        this.stop = stop;
     }
 }

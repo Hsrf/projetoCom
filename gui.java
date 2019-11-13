@@ -14,9 +14,12 @@ public class gui {
     private JCheckBox checkBox;
     private JFrame janela;
     private cliente client;
+    public captureAudio capAudio;
+    private Thread threadCA;
 
     public gui(cliente client){
         this.client = client;
+        capAudio = new captureAudio();
         janela = new JFrame();
         janela.setContentPane(panel);
         janela.setVisible(true);
@@ -57,11 +60,15 @@ public class gui {
 
         checkBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 if(checkBox.isSelected()){
-
+                    //permita continuar a thread
+                    capAudio.setStop(false);
+                    //iniciar thread
+                    threadCA = new Thread(capAudio);
+                    threadCA.start();
                 }else{
-
+                    //pare a thread
+                    capAudio.setStop(true);
                 }
             }
         });
