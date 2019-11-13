@@ -11,7 +11,7 @@ public class cliente {
 	gui graphicUI;
 	//Informacoes do servidor
 	int serverPort = 9999;
-	InetAddress serverIP = InetAddress.getByName("localhost");
+	InetAddress serverIP = InetAddress.getByName("172.20.4.150");
 	//Informacoes do outro cliente
 	int otherPort;
 	InetAddress otherIP = InetAddress.getByName("localhost");

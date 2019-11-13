@@ -11,6 +11,7 @@ public class gui {
     private JPanel panel;
     private JTextField textField;
     private JButton button1;
+    private JCheckBox checkBox;
     private JFrame janela;
     private cliente client;
 
@@ -22,6 +23,7 @@ public class gui {
         janela.pack();
         janela.setSize(540, 540);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         textField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
@@ -38,6 +40,7 @@ public class gui {
                 }
             }
         });
+
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(!textField.getText().equals("")) {
@@ -48,6 +51,17 @@ public class gui {
                         ex.printStackTrace();
                     }
                     textField.setText("");
+                }
+            }
+        });
+
+        checkBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+
+                if(checkBox.isSelected()){
+
+                }else{
+
                 }
             }
         });
