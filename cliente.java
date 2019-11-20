@@ -11,7 +11,7 @@ public class cliente {
 	gui graphicUI;
 	//Informacoes do servidor
 	int serverPort = 9999;
-	InetAddress serverIP = InetAddress.getByName("172.20.4.150");
+	InetAddress serverIP = InetAddress.getByName("localhost");
 	//Informacoes do outro cliente
 	int otherPort;
 	InetAddress otherIP = InetAddress.getByName("localhost");
@@ -46,7 +46,7 @@ public class cliente {
 		byte[] receiveData = new byte[50];
 		receivePacket = new DatagramPacket(receiveData, receiveData.length);
 		port.receive(receivePacket);
-		String new_str = new String(receivePacket.getData());
+		String new_str = new String(receivePacket.getData(), 0, receivePacket.getLength());
 
 		if(receivePacket.getPort() == serverPort && serverIP.equals(receivePacket.getAddress())) {
 			otherIP = InetAddress.getByAddress(Arrays.copyOfRange(receiveData, 0, 4));

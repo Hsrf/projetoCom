@@ -12,7 +12,7 @@ public class captureAudio implements Runnable {
     }
 
     public void run() {
-        timer.schedule(new sendAudio(), 20);
+        timer.schedule(new sendAudio(), 500);
         while(!stop){
             //armazena as informacoes de audio em audioData
         }
@@ -22,7 +22,8 @@ public class captureAudio implements Runnable {
         public void run() {
             //envia audio pro outro cliente
             //zera o array
-            if(!stop) timer.schedule(new sendAudio(), 20);
+            System.out.println("funcionando");
+            if(!stop) timer.schedule(new sendAudio(), 500);
         }
     }
 
