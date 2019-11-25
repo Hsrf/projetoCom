@@ -32,9 +32,9 @@ public class gui {
                 super.keyPressed(e);
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
                     if(!textField.getText().equals("")) {
-                        textArea.append("YOU: " + textField.getText() + "\n");
+                        textArea.append(client.idThis + ": " + textField.getText() + "\n");
                         try {
-                            client.sendPack(textField.getText(), client.otherIP, client.otherPort);
+                            client.sendMsg(textField.getText().getBytes(), client.otherIP, client.portOtherMsg);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
@@ -47,9 +47,9 @@ public class gui {
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(!textField.getText().equals("")) {
-                    textArea.append("YOU: " + textField.getText() + "\n");
+                    textArea.append(client.idThis + ": " + textField.getText() + "\n");
                     try {
-                        client.sendPack(textField.getText(), client.otherIP, client.otherPort);
+                        client.sendMsg(textField.getText().getBytes(), client.otherIP, client.portOtherMsg);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
