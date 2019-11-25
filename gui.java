@@ -11,7 +11,8 @@ public class gui {
     private JPanel panel;
     private JTextField textField;
     private JButton button1;
-    private JCheckBox checkBox;
+    private JCheckBox cbAudio;
+    private JCheckBox cbStatus;
     private JFrame janela;
     private cliente client;
     public captureAudio capAudio;
@@ -26,6 +27,8 @@ public class gui {
         janela.pack();
         janela.setSize(540, 540);
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        janela.setTitle(client.idThis.toUpperCase() + "  -->  " + client.idOther.toUpperCase());
+        cbStatus.setSelected(true);
 
         textField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
@@ -58,9 +61,9 @@ public class gui {
             }
         });
 
-        checkBox.addActionListener(new ActionListener() {
+        cbAudio.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if(checkBox.isSelected()){
+                if(cbAudio.isSelected()){
                     //permita continuar a thread
                     capAudio.setStop(false);
                     //iniciar thread
@@ -69,6 +72,23 @@ public class gui {
                 }else{
                     //pare a thread
                     capAudio.setStop(true);
+                }
+            }
+        });
+
+        cbStatus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if(!cbStatus.isSelected()){
+                    button1.setEnabled(false);
+                    cbAudio.setEnabled(false);
+                    cbAudio.setSelected(false);
+                    capAudio.setStop(true);
+                    textField.setEnabled(false);
+                    textField.setText("");
+                }else{
+                    button1.setEnabled(true);
+                    cbAudio.setEnabled(true);
+                    textField.setEnabled(true);
                 }
             }
         });

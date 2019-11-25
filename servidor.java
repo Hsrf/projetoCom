@@ -38,6 +38,9 @@ public class servidor {
             int portMsg1 = -1, portMsg2 = -1;
 			int portAudio1 = -1, portAudio2 = -1;
 			InetAddress ip1 = null, ip2 = null;
+
+			//Abrindo a interface do servidor
+			serverUI sUI = new serverUI();
 			
 			while(true) {
 				receivePacket = new DatagramPacket(receiveData, receiveData.length);

@@ -69,7 +69,7 @@ public class cliente {
         return wrapped.getInt();
     }
 	
-	public String receivePack() throws IOException {
+	public String receiveMsg() throws IOException {
 		byte[] receiveData = new byte[1024];
 		receivePacket = new DatagramPacket(receiveData, receiveData.length);
 		portThisMsg.receive(receivePacket);
@@ -84,5 +84,9 @@ public class cliente {
 			return "";
 		}
 		return new_str;
+	}
+
+	public void receiveAudio(){
+
 	}
 }
