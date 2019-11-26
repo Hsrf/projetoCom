@@ -17,7 +17,7 @@ public class receber extends Thread{
 			try {
 				str = client.receivePack();
 				if(!str.equals("")) {
-					client.graphicUI.textArea.append("OTHER: " + str + "\n");
+					client.graphicUI.textArea.append(client.idOther + ": " + str + "\n");
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
